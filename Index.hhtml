@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #ff9ec4, #ffc0cb);
+  font-family: 'Segoe UI', cursive;
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  margin-top: 40px;
+  font-size: 30px;
+}
+
+#gameText {
+  font-size: 18px;
+}
+
+.heart {
+  position: absolute;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.flower {
+  position: absolute;
+  top: -50px;
+  font-size: 24px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+#winMessage {
+  display: none;
+  font-size: 26px;
+  margin-top: 40px;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Catch My Heart ❤️</h1>
+<p id="gameText">Click 7 hearts to unlock your surprise</p>
+
+<div id="winMessage">
+  💖 You caught my heart 💖<br><br>
+  Happy Valentine’s Day My Love 🌹<br><br>
+  From Tamil Selvan ❤️
+</div>
+
+<script>
+let count = 0;
+
+// Create hearts
+function createHeart() {
+  let heart = document.createElement("div");
+  heart.innerHTML = "❤️";
+  heart.className = "heart";
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.top = Math.random() * window.innerHeight + "px";
+
+  heart.onclick = function() {
+    count++;
+    heart.remove();
+
+    if(count >= 7){
+      document.getElementById("gameText").style.display = "none";
+      document.getElementById("winMessage").style.display = "block";
+    } else {
+      createHeart();
+    }
+  };
+
+  document.body.appendChild(heart);
+}
+
+createHeart();
+
+// Falling flowers
+function createFlower(){
+  let flower = document.createElement("div");
+  flower.innerHTML = "🌸";
+  flower.className = "flower";
+  flower.style.left = Math.random() * window.innerWidth + "px";
+  flower.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+  document.body.appendChild(flower);
+
+  setTimeout(() => {
+    flower.remove();
+  }, 8000);
+}
+
+setInterval(createFlower, 500);
+</script>
+
+</body>
+</html>
